@@ -3,12 +3,23 @@ cmdbikes
 Have you ever thought
 
     Damn, I wish I could check the status of my local bike
-    sharing network on my terminal
+    sharing network on a terminal
 
 Well, now with ``cmdbikes`` you can!
 
 .. image:: http://i.imgur.com/3LJqFjp.gif
 
+About
+-----
+This is a silly client to showcase `python-citybikes`_, a python wrapper for
+the `Citybikes API`_. You can learn more about the project at
+https://citybik.es.
+
+If your network is not supported, add an issue or a PR on `pybikes`_.
+
+.. _`python-citybikes`: http://github.com/eskerda/python-citybikes
+.. _`Citybikes API`: https://api.citybik.es
+.. _`pybikes`: http://github.com/eskerda/pybikes
 Installation
 ------------
 .. code-block::
@@ -50,15 +61,3 @@ Check the list of supported networks
     ├ Wachau (LEIHRADL)
     ...
 
-
-About
------
-This is a silly client to showcase `python-citybikes`_, a python wrapper for
-the `Citybikes API`_. You can learn more about the project at
-https://citybik.es.
-
-If your network is not supported, add an issue or a PR on `pybikes`_.
-
-.. _`python-citybikes`: http://github.com/eskerda/python-citybikes
-.. _`Citybikes API`: https://api.citybik.es
-.. _`pybikes`: http://github.com/eskerda/pybikes
