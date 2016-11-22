@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-__version__ = '0.1.2'
+__version__ = '0.1.3'
 
 import itertools
 
@@ -14,7 +14,6 @@ from iso3166 import countries
 client = citybikes.Client()
 
 network_name_template = u'Found network: {0[name]}, {1[city]} ({1[country]})\n'
-error_network_template = u'No bike network found near {address}'
 country_name_template = u'{} [{}]'
 
 epilog = ''.join([
@@ -119,11 +118,6 @@ def show(address, geocode, n, color):
         click.echo('Disabling geocoder, too many stations to geocode',
                    err=True, color=color)
         geocode = False
-
-    if distance > 0.05:
-        click.echo(click.style(error_network_template.format(address=address),
-                               fg='red'), color=color, err=True)
-        return -1
 
     stations = [s for s, d in network.stations.near(lat, lng)]
     if n == 0:
