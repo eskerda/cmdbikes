@@ -22,7 +22,7 @@ setup(
     url='http://github.com/eskerda/cmdbikes',
     py_modules=['cli'],
     install_requires=[
-        'python-citybikes',
+        'python-citybikes>=0.1.3',
         'click',
         'colorama',
         'geocoder',

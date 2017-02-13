@@ -39,6 +39,7 @@ Usage
       --geocode / --no-geocode  Geocode station positions into a readable address
       -n INTEGER                Number of stations to show.
       --color / --no-color      Use colors on output
+      --json                    Return JSON representation
       --help                    Show this message and exit.
 
 Check the list of supported networks

@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
 
-__version__ = '0.1.4'
-
 import itertools
+import json
 
 import citybikes
 import click
@@ -10,10 +9,11 @@ import geocoder
 import colorama
 from iso3166 import countries
 
+__version__ = '0.1.5'
 
 client = citybikes.Client()
 
-network_name_template = u'Found network: {0[name]}, {1[city]} ({1[country]})\n'
+network_name_template = u'Found network: {0[name]}, {1[city]} ({1[country]})'
 country_name_template = u'{} [{}]'
 
 epilog = ''.join([
@@ -110,21 +110,32 @@ def cli():
 @click.option('-n', default=5, help='Number of stations to show.', type=int)
 @click.option('--color / --no-color', is_flag=True, default=True,
               help='Use colors on output')
-def show(address, geocode, n, color):
+@click.option('--json', 'output_json', is_flag=True, default=False,
+              help='Return JSON representation')
+def show(address, geocode, n, color, output_json):
     """Display status of station on a given address."""
+
     lat, lng = geocoder.google(address).latlng
     network, distance = next(iter(client.networks.near(lat, lng)))
+
     if n == 0 or n > 10:
         click.echo('Disabling geocoder, too many stations to geocode',
                    err=True, color=color)
         geocode = False
-
-    stations = [s for s, d in network.stations.near(lat, lng)]
     if n == 0:
         n = len(stations)
+
+    stations = [s for s, d in network.stations.near(lat, lng)][:n]
     net_name = network_name_template.format(network, network['location'])
+
     click.echo(click.style(net_name, fg='green'), err=True, color=color)
-    for station in stations[:n]:
+
+    if output_json:
+        click.echo(json.dumps(stations, cls=citybikes.resource.JSONEncoder,
+            indent=4))
+        return
+
+    for station in stations:
         display_station(station, geocode=geocode, use_colors=color)
         click.echo()
 
@@ -153,6 +164,8 @@ def ls():
             name = u'{0[location][city]} ({0[name]})'.format(n)
             click.echo((u'├' if i < len(networks)-1 else u'└') + ' ' + name)
         click.echo()
+
+
 cli.add_command(show)
 cli.add_command(ls)
 
