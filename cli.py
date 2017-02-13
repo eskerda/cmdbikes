@@ -9,7 +9,7 @@ import geocoder
 import colorama
 from iso3166 import countries
 
-__version__ = '0.1.5'
+__version__ = '0.1.6'
 
 client = citybikes.Client()
 
@@ -123,7 +123,7 @@ def show(address, geocode, n, color, output_json):
                    err=True, color=color)
         geocode = False
     if n == 0:
-        n = len(stations)
+        n = len(network.stations)
 
     stations = [s for s, d in network.stations.near(lat, lng)][:n]
     net_name = network_name_template.format(network, network['location'])
