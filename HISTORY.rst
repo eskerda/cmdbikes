@@ -1,5 +1,11 @@
 History
 =======
+0.1.7 (2018-10-15)
+------------------
+* Fix issues with google geocoder. Now uses OSM Nominatim: since some stations
+  are on OSM, they do not return a house number, which makes addresses
+  pointless.
+
 0.1.5 (2017-02-13)
 ------------------
 * Add --json flag for valid JSON output

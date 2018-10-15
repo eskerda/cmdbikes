@@ -9,7 +9,7 @@ import geocoder
 import colorama
 from iso3166 import countries
 
-__version__ = '0.1.6'
+__version__ = '0.1.7'
 
 client = citybikes.Client()
 
@@ -55,6 +55,21 @@ def get_color(number):
         return 'red'
 
 
+def format_address(loc):
+    keys = [
+        # Stupid ping pong to get readable address out of bike station osm
+        # nodes. Nominatim seems to ignore osm_type query, which would make
+        # things easier
+        lambda addr: addr.get('address29') or addr.get('road'),
+        'house_number',
+        'postcode',
+        'city'
+    ]
+    address = loc.raw['address']
+    components = [k(address) if callable(k) else address.get(k) for k in keys]
+    return ", ".join(filter(None, components))
+
+
 def display_station(station, geocode=False, use_colors=False):
     bar_width = 30
     padding = ' ' * 1
@@ -83,13 +98,13 @@ def display_station(station, geocode=False, use_colors=False):
         click.style(slots_s, fg=get_color(slots))
     ])
 
-    address = 'lat, lng: {:.6f}, {:.6f}'.format(station['latitude'],
-                                                station['longitude'])
     if geocode:
-        loc = geocoder.google([station['latitude'], station['longitude']],
-                              method='reverse')
-        address = loc.address
-
+        loc = geocoder.osm([station['latitude'], station['longitude']],
+                           method='reverse')
+        address = format_address(loc)
+    else:
+        address = 'lat, lng: {:.6f}, {:.6f}'.format(station['latitude'],
+                                                    station['longitude'])
     click.echo(padding + station['name'].title(), color=use_colors)
     click.echo(click.style(padding + status_bar, fg=get_color(bikes)),
                color=use_colors)
@@ -115,7 +130,7 @@ def cli():
 def show(address, geocode, n, color, output_json):
     """Display status of station on a given address."""
 
-    lat, lng = geocoder.google(address).latlng
+    lat, lng = geocoder.osm(address).latlng
     network, distance = next(iter(client.networks.near(lat, lng)))
 
     if n == 0 or n > 10:
