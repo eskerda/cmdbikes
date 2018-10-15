@@ -72,17 +72,16 @@ def format_address(loc):
 
 def display_station(station, geocode=False, use_colors=False):
     bar_width = 30
-    padding = ' ' * 1
-    total_slots = station.get('extra', {}).get('slots')
-    if not total_slots:
-        if station['empty_slots']:
-            total_slots = station['free_bikes'] + station['empty_slots']
-        else:
-            total_slots = 0
+    padding = ' '
 
-    total_slots = float(total_slots)
-    bikes = int(station['free_bikes'])
-    slots = int(station['empty_slots'] or 0)
+    bikes = int(station.get('free_bikes', 0))
+    slots = int(station.get('empty_slots', 0))
+
+    if 'slots' in station.get('extra', {}):
+        total_slots = float(station['extra']['slots'])
+    else:
+        total_slots = float(bikes + slots)
+
     bikes_s = '%s bikes' % bikes
     slots_s = '%s slots' % slots
 
