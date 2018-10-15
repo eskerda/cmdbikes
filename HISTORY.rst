@@ -6,6 +6,10 @@ History
   are on OSM, they do not return a house number, which makes addresses
   pointless.
 
+0.1.6 (2017-02-13)
+------------------
+* Fix bug with -n flag and stations
+
 0.1.5 (2017-02-13)
 ------------------
 * Add --json flag for valid JSON output

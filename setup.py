@@ -1,11 +1,8 @@
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import re
 from setuptools import setup
-
-with open('cli.py', 'r') as fd:
-    version = re.search(r'^__version__\s*=\s*[\'"]([^\'"]*)[\'"]',
-                        fd.read(), re.MULTILINE).group(1)
+from cli import __version__
 
 with open('README.rst', 'r') as f:
     readme = f.read()
@@ -14,7 +11,7 @@ with open('HISTORY.rst', 'r') as f:
 
 setup(
     name='cmdbikes',
-    version=version,
+    version=__version__,
     description='Bike sharing at your terminal',
     long_description=readme + '\n\n' + history,
     author='Lluís Esquerda',
