@@ -1,5 +1,9 @@
 History
 =======
+0.1.8 (2018-10-15)
+------------------
+* Fix bikes / slots bar not showing up on python 2
+
 0.1.7 (2018-10-15)
 ------------------
 * Fix issues with google geocoder. Now uses OSM Nominatim: since some stations
