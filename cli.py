@@ -147,7 +147,7 @@ def show(address, geocode, n, color, output_json):
 
     if output_json:
         click.echo(json.dumps(stations, cls=citybikes.resource.JSONEncoder,
-            indent=4))
+                              indent=4))
         return
 
     for station in stations:
