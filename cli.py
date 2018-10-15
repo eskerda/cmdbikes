@@ -80,7 +80,7 @@ def display_station(station, geocode=False, use_colors=False):
         else:
             total_slots = 0
 
-    total_slots = int(total_slots)
+    total_slots = float(total_slots)
     bikes = int(station['free_bikes'])
     slots = int(station['empty_slots'] or 0)
     bikes_s = '%s bikes' % bikes
