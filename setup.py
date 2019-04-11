@@ -19,7 +19,7 @@ setup(
     long_description=readme + '\n\n' + history,
     author='Lluís Esquerda',
     author_email='eskerda@gmail.com',
-    url='http://github.com/eskerda/cmdbikes',
+    url='https://github.com/eskerda/cmdbikes',
     py_modules=['cli'],
     install_requires=[
         'python-citybikes>=0.1.3',
