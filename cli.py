@@ -9,7 +9,7 @@ import geocoder
 import colorama
 from iso3166 import countries
 
-__version__ = '0.1.8'
+__version__ = '0.1.9'
 
 client = citybikes.Client()
 

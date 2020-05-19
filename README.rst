@@ -20,6 +20,7 @@ If your network is not supported, add an issue or a PR on `pybikes`_.
 .. _`python-citybikes`: http://github.com/eskerda/python-citybikes
 .. _`Citybikes API`: https://api.citybik.es
 .. _`pybikes`: http://github.com/eskerda/pybikes
+
 Installation
 ------------
 .. code-block::
