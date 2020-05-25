@@ -1,5 +1,10 @@
 History
 =======
+0.1.9 (2020-05-19)
+------------------
+* Fix wrong colors on full stations
+* Add MIT License
+
 0.1.8 (2018-10-15)
 ------------------
 * Fix bikes / slots bar not showing up on python 2
