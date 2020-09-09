@@ -7,7 +7,7 @@ Have you ever thought
 
 Well, now with ``cmdbikes`` you can!
 
-.. image:: http://i.imgur.com/3LJqFjp.gif
+.. image:: https://i.imgur.com/3LJqFjp.gif
 
 About
 -----
@@ -17,9 +17,9 @@ https://citybik.es.
 
 If your network is not supported, add an issue or a PR on `pybikes`_.
 
-.. _`python-citybikes`: http://github.com/eskerda/python-citybikes
+.. _`python-citybikes`: https://github.com/eskerda/python-citybikes
 .. _`Citybikes API`: https://api.citybik.es
-.. _`pybikes`: http://github.com/eskerda/pybikes
+.. _`pybikes`: http:s//github.com/eskerda/pybikes
 
 Installation
 ------------
