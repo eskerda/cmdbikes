@@ -11,9 +11,9 @@ from iso3166 import countries
 
 __version__ = '0.1.10'
 
-client = citybikes.Client()
 UA = "cmdbikes v%s" % __version__
 
+client = citybikes.Client(headers={'User-Agent': UA})
 locator = Nominatim(user_agent=UA)
 
 network_name_template = u'Found network: {0[name]}, {1[city]} ({1[country]})'
