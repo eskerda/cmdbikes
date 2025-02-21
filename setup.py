@@ -25,7 +25,7 @@ setup(
         'python-citybikes>=0.1.3',
         'click',
         'colorama',
-        'geocoder',
+        'geopy',
         'iso3166',
     ],
     entry_points='''

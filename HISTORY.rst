@@ -1,5 +1,10 @@
 History
 =======
+0.1.10 (2025-02-21)
+-------------------
+* Use geopy for geocoding
+* Add user agent for accesssing Nominatim and Citybikes
+
 0.1.9 (2020-05-19)
 ------------------
 * Fix wrong colors on full stations
