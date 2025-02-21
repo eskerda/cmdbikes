@@ -6,6 +6,8 @@ import json
 import citybikes
 import click
 from geopy.geocoders import Nominatim
+from geopy.exc import GeocoderUnavailable
+
 import colorama
 from iso3166 import countries
 
@@ -152,7 +154,13 @@ def show(address, geocode, n, color, output_json):
         return
 
     for station in stations:
-        display_station(station, geocode=geocode, use_colors=color)
+        try:
+            display_station(station, geocode=geocode, use_colors=color)
+        except GeocoderUnavailable:
+            click.echo("""total failure trying to geocode, disabling it
+also run cmdbikes with --no-geocode for faster results""", err=True)
+            geocode = False
+            display_station(station, geocode=geocode, use_colors=color)
         click.echo()
 
 
