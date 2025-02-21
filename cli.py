@@ -5,13 +5,16 @@ import json
 
 import citybikes
 import click
-import geocoder
+from geopy.geocoders import Nominatim
 import colorama
 from iso3166 import countries
 
-__version__ = '0.1.9'
+__version__ = '0.1.10'
 
 client = citybikes.Client()
+UA = "cmdbikes v%s" % __version__
+
+locator = Nominatim(user_agent=UA)
 
 network_name_template = u'Found network: {0[name]}, {1[city]} ({1[country]})'
 country_name_template = u'{} [{}]'
@@ -98,8 +101,7 @@ def display_station(station, geocode=False, use_colors=False):
     ])
 
     if geocode:
-        loc = geocoder.osm([station['latitude'], station['longitude']],
-                           method='reverse')
+        loc = locator.reverse([station['latitude'], station['longitude']])
         address = format_address(loc)
     else:
         address = 'lat, lng: {:.6f}, {:.6f}'.format(station['latitude'],
@@ -129,7 +131,7 @@ def cli():
 def show(address, geocode, n, color, output_json):
     """Display status of station on a given address."""
 
-    lat, lng = geocoder.osm(address).latlng
+    lat, lng, _ = locator.geocode(address).point
     network, distance = next(iter(client.networks.near(lat, lng)))
 
     if n == 0 or n > 10:
