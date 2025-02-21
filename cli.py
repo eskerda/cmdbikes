@@ -123,7 +123,7 @@ def cli():
 
 @click.command()
 @click.argument('address', default=None)
-@click.option('--geocode / --no-geocode', is_flag=True, default=True,
+@click.option('--geocode / --no-geocode', is_flag=True, default=False,
               help='Geocode station positions into a readable address')
 @click.option('-n', default=5, help='Number of stations to show.', type=int)
 @click.option('--color / --no-color', is_flag=True, default=True,
