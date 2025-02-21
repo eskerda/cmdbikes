@@ -11,7 +11,7 @@ from geopy.exc import GeocoderUnavailable
 import colorama
 from iso3166 import countries
 
-__version__ = '0.1.10'
+__version__ = '0.1.11'
 
 UA = "cmdbikes v%s" % __version__
 
